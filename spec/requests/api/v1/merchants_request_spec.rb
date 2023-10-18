@@ -60,7 +60,7 @@ RSpec.describe "Merchants API" do
     merchant = Merchant.create!(name: "Primary Merchant")
     create_list(:item, 5, merchant_id: merchant.id)
 
-    get "/api/v1/merchants/#{primary_merchant.id}/items"
+    get "/api/v1/merchants/#{merchant.id}/items"
 
     expect(response).to be_successful
 
@@ -84,6 +84,8 @@ RSpec.describe "Merchants API" do
       expect(attributes["description"]).to be_a String
       expect(attributes).to have_key("unit_price")
       expect(attributes["unit_price"]).to be_a Numeric
+      expect(attributes).to have_key("merchant_id")
+      expect(attributes["merchant_id"]).to be_a String
     end
 
   end
