@@ -88,4 +88,17 @@ RSpec.describe "Items API" do
     expect(item.unit_price).to eq(item_params[:unit_price])
     expect(item.merchant_id).to eq(item_params[:merchant_id])
   end
+
+  it "allows deletion of an item through deleting to /items/:id" do
+    merchant = Merchant.create!(name: "Kiwi")
+    item = Item.create!(name: "Test item", description: "I'm in danger!", unit_price: 1.01, merchant_id: merchant.id)
+
+    expect(Item.count).to eq(1)
+
+    delete "/api/v1/items/#{item.id}"
+
+    expect(response).to be_successful
+    expect(Item.count).to eq(0)
+    expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end
