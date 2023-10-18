@@ -85,8 +85,7 @@ RSpec.describe "Merchants API" do
       expect(attributes).to have_key("unit_price")
       expect(attributes["unit_price"]).to be_a Numeric
       expect(attributes).to have_key("merchant_id")
-      expect(attributes["merchant_id"]).to be_a String
+      expect(attributes["merchant_id"]).to be_a Numeric
     end
-
   end
 end

@@ -181,9 +181,9 @@
         "lines": [
           1,
           1,
-          11,
-          11,
-          11,
+          21,
+          21,
+          21,
           1,
           null,
           null
@@ -211,6 +211,8 @@
           1,
           1,
           null,
+          null,
+          1,
           null,
           null,
           null
@@ -362,6 +364,46 @@
           null
         ]
       },
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/spec/requests/api/v1/items_request_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          10,
+          10,
+          null,
+          10,
+          10,
+          null,
+          10,
+          10,
+          null,
+          10,
+          null,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/spec/requests/api/v1/merchants_request_spec.rb": {
         "lines": [
           1,
@@ -454,7 +496,29 @@
           5,
           null,
           null,
+          null
+        ]
+      },
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/controllers/api/v1/items_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
           null,
+          null
+        ]
+      },
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/serializers/item_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
           null
         ]
       },
@@ -468,12 +532,6 @@
           1,
           1,
           null,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
           null
         ]
       },
@@ -493,20 +551,8 @@
           null,
           null
         ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/serializers/item_serializer.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          1,
-          5,
-          null,
-          null
-        ]
       }
     },
-    "timestamp": 1697612979
+    "timestamp": 1697613656
   }
 }
