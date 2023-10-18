@@ -177,6 +177,15 @@
           null
         ]
       },
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/spec/factories/merchant_factory.rb": {
+        "lines": [
+          1,
+          1,
+          4,
+          null,
+          null
+        ]
+      },
       "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/config/routes.rb": {
         "lines": [
           1,
@@ -184,103 +193,11 @@
           null,
           null,
           null,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/models/customer.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/spec/models/invoice_item_spec.rb": {
-        "lines": [
-          1,
           null,
-          1,
-          1,
-          2,
-          2,
-          null,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/models/invoice_item.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/spec/models/invoice_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          2,
-          2,
-          2,
-          null,
-          2,
-          2,
-          null,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/models/invoice.rb": {
-        "lines": [
-          1,
           1,
           1,
           1,
           null,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/spec/models/item_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          2,
-          2,
-          null,
-          2,
-          null,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/models/item.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          1,
-          null
-        ]
-      },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/spec/models/merchant_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          2,
-          2,
           null,
           null
         ]
@@ -293,25 +210,37 @@
           null
         ]
       },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/spec/models/transaction_spec.rb": {
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/models/application_record.rb": {
         "lines": [
           1,
-          null,
+          1,
+          null
+        ]
+      },
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
+        "lines": [
           1,
           1,
-          2,
+          1,
           null,
           null
         ]
       },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/models/transaction.rb": {
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/controllers/application_controller.rb": {
         "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/serializers/merchant_serializer.rb": {
+        "lines": [
+          1,
           1,
           1,
           null
         ]
       }
     },
-    "timestamp": 1697600508
+    "timestamp": 1697602491
   }
 }
