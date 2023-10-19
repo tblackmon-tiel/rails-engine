@@ -270,6 +270,45 @@ RSpec.describe "Items API" do
       expect(data[:errors].first[:status]).to eq(404)
       expect(data[:errors].first[:title]).to eq("Couldn't find Item with 'id'=999999999")
     end
+
+    it "returns empty results if no items are found using the find_all endpoint (including max_price, min_price, and name)" do
+      merchant = Merchant.create!(name: "Kiwi")
+      item1 = Item.create!(name: "searchable One", description: "a searchable item", unit_price: 1023, merchant_id: merchant.id)
+    
+      get "/api/v1/items/find_all?max_price=1"
+      expect(response).to be_successful
+    
+      items = JSON.parse(response.body)
+      expect(items).to have_key("data")
+      expect(items["data"]).to be_an Array
+      expect(items["data"]).to be_empty
+
+      get "/api/v1/items/find_all?min_price=99999"
+      expect(response).to be_successful
+    
+      items = JSON.parse(response.body)
+      expect(items).to have_key("data")
+      expect(items["data"]).to be_an Array
+      expect(items["data"]).to be_empty
+
+      get "/api/v1/items/find_all?name=aaaaa"
+      expect(response).to be_successful
+    
+      items = JSON.parse(response.body)
+      expect(items).to have_key("data")
+      expect(items["data"]).to be_an Array
+      expect(items["data"]).to be_empty
+    end
+
+    it "returns an error if the request includes both name and one or both of min/max price" do
+      get "/api/v1/items/find_all?name=aaa&max_price=1"
+      expect(response).to_not be_successful
+
+      data = JSON.parse(response.body, symbolize_names: true)
+      expect(data).to have_key(:errors)
+      expect(data[:errors]).to be_a String
+      expect(data[:errors]).to eq("Name and price parameters cannot be requested at the same time")
+    end
   end
 
   describe "edge cases" do
