@@ -68,18 +68,6 @@ RSpec.describe "Items API" do
     expect(attributes["merchant_id"]).to be_a Numeric
   end
 
-  it "returns 404 on an id that doesn't exist" do
-    get "/api/v1/items/999999999"
-
-    expect(response).to_not be_successful
-    expect(response.status).to eq(404)
-
-    data = JSON.parse(response.body, symbolize_names: true)
-    expect(data[:errors]).to be_an Array
-    expect(data[:errors].first[:status]).to eq(404)
-    expect(data[:errors].first[:title]).to eq("Couldn't find Item with 'id'=999999999")
-  end
-
   it "allows creation of an item through posting to /items" do
     merchant = Merchant.create!(name: "Kiwi")
     item_params = {
@@ -267,6 +255,39 @@ RSpec.describe "Items API" do
       expect(attributes["unit_price"]).to be_a Numeric
       expect(attributes).to have_key("merchant_id")
       expect(attributes["merchant_id"]).to be_a Numeric
+    end
+  end
+
+  describe "sad paths" do
+    it "returns 404 on an id that doesn't exist" do
+      get "/api/v1/items/999999999"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      data = JSON.parse(response.body, symbolize_names: true)
+      expect(data[:errors]).to be_an Array
+      expect(data[:errors].first[:status]).to eq(404)
+      expect(data[:errors].first[:title]).to eq("Couldn't find Item with 'id'=999999999")
+    end
+  end
+
+  describe "edge cases" do
+    it "returns 400 when updating an item with a merchant_id that doesn't exist" do
+      merchant = Merchant.create!(name: "Kiwi")
+      item1 = Item.create!(name: "searchable One", description: "a searchable item", unit_price: 1023, merchant_id: merchant.id)
+      item_params = { merchant_id: 99999999 }
+      headers = {"CONTENT_TYPE" => "application/json"}
+    
+      patch "/api/v1/items/#{item1.id}", headers: headers, params: JSON.generate({item: item_params})
+
+      expect(response).to_not be_successful
+      expect(response.status).to be(400)
+
+      data = JSON.parse(response.body, symbolize_names: true)
+      expect(data[:errors]).to be_an Array
+      expect(data[:errors].first[:status]).to eq(400)
+      expect(data[:errors].first[:title]).to eq("Validation failed: Merchant must exist")
     end
   end
 end
