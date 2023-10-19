@@ -3,7 +3,7 @@ class Api::V1::Merchants::SearchController < ApplicationController
     if Merchant.find_by_name(params[:name])
       render json: MerchantSerializer.new(Merchant.find_by_name(params[:name]))
     else
-      render json: { data: {} }
+      render json: { data: {id: nil, attributes: {}} }
     end
   end
 end
