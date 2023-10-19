@@ -88,4 +88,29 @@ RSpec.describe "Merchants API" do
       expect(attributes["merchant_id"]).to be_a Numeric
     end
   end
+
+  it "can find a single merchant given a search term" do
+    merchant = Merchant.create!(name: "mY SeARch MERchanT")
+    create_list(:merchant, 15)
+
+    get "/api/v1/merchants/find?name=search"
+
+    expect(response).to be_successful
+    
+    result = JSON.parse(response.body)
+    expect(result).to have_key("data")
+    expect(result["data"]).to be_a Hash
+
+    data = result["data"]
+    expect(data).to have_key("id")
+    expect(data["id"]).to be_a String
+    expect(data).to have_key("type")
+    expect(data["type"]).to be_a String
+    expect(data).to have_key("attributes")
+    expect(data["attributes"]).to be_a Hash
+
+    attributes = data["attributes"]
+    expect(attributes).to have_key("name")
+    expect(attributes["name"]).to be_a String
+  end
 end
