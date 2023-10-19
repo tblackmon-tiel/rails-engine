@@ -113,4 +113,18 @@ RSpec.describe "Merchants API" do
     expect(attributes).to have_key("name")
     expect(attributes["name"]).to be_a String
   end
+
+  describe "sad paths" do
+    it "returns 404 on a merchant id that doesnt exist" do
+      get "/api/v1/merchants/999999999"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      data = JSON.parse(response.body, symbolize_names: true)
+      expect(data[:errors]).to be_an Array
+      expect(data[:errors].first[:status]).to eq(404)
+      expect(data[:errors].first[:title]).to eq("Couldn't find Merchant with 'id'=999999999")
+    end
+  end
 end

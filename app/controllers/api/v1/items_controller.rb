@@ -1,5 +1,4 @@
 class Api::V1::ItemsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
   rescue_from ActiveRecord::RecordInvalid, with: :invalid_response
 
   def index
@@ -23,21 +22,11 @@ class Api::V1::ItemsController < ApplicationController
     item.update!(item_params)
 
     render json: ItemSerializer.new(item)
-
-    # if item.update(item_params)
-    #   render json: ItemSerializer.new(item)
-    # else
-    #   render json: {}, status: 400
-    # end
   end
 
   private
     def item_params
       params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
-    end
-
-    def not_found_response(error)
-      render json: ErrorSerializer.new(ErrorMessage.new(error.message, 404)).serialize_json, status: 404
     end
 
     def invalid_response(error)
