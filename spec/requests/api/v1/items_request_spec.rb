@@ -101,4 +101,19 @@ RSpec.describe "Items API" do
     expect(Item.count).to eq(0)
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
+
+  it "can update an existing item" do
+    merchant = Merchant.create!(name: "Kiwi")
+    id = create(:item, merchant_id: merchant.id).id
+    item_params = { name: "Updated Item", description: "new description", unit_price: 1023.23 }
+    headers = {"CONTENT_TYPE" => "application/json"}
+  
+    patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: item_params})
+    item = Item.find_by(id: id)
+  
+    expect(response).to be_successful
+    expect(item.name).to eq("Updated Item")
+    expect(item.description).to eq("new description")
+    expect(item.unit_price).to eq(1023.23)
+  end
 end
