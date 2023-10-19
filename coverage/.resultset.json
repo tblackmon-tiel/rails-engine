@@ -181,9 +181,9 @@
         "lines": [
           1,
           1,
-          33,
-          33,
-          33,
+          28,
+          28,
+          28,
           1,
           null,
           null
@@ -293,24 +293,6 @@
           null,
           2,
           null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null,
           null
         ]
       },
@@ -321,10 +303,6 @@
           1,
           null,
           1,
-          null,
-          1,
-          2,
-          null,
           null
         ]
       },
@@ -687,7 +665,7 @@
           null
         ]
       },
-      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/controllers/api/v1/merchant_items_controller.rb": {
+      "/Users/tylerblackmon/turing_work/3mod/lessons/rails-engine/app/controllers/api/v1/merchants/items_controller.rb": {
         "lines": [
           1,
           1,
@@ -697,6 +675,6 @@
         ]
       }
     },
-    "timestamp": 1697699759
+    "timestamp": 1697700053
   }
 }
