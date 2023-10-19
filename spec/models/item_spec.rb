@@ -37,7 +37,7 @@ RSpec.describe Item, type: :model do
 
     describe "#find_all_by_max_price" do
       it "returns all items under a given price threshold" do
-        expect(Item.find_all_by_max_price(50)).to eq(@item3, @item2)
+        expect(Item.find_all_by_max_price(50)).to eq([@item3, @item2])
       end
     end
   end
