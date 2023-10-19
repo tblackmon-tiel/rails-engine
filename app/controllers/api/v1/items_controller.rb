@@ -4,7 +4,11 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def show
-    render json: ItemSerializer.new(Item.find(params[:id]))
+    begin
+      render json: ItemSerializer.new(Item.find(params[:id]))
+    rescue ActiveRecord::RecordNotFound => e
+      render json: ErrorSerializer.new(ErrorMessage.new(e.message, 404)).serialize_json, status: 404
+    end
   end
 
   def create

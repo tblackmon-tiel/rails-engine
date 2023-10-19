@@ -68,6 +68,18 @@ RSpec.describe "Items API" do
     expect(attributes["merchant_id"]).to be_a Numeric
   end
 
+  it "returns 404 on an id that doesn't exist" do
+    get "/api/v1/items/999999999"
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+
+    data = JSON.parse(response.body, symbolize_names: true)
+    expect(data[:errors]).to be_an Array
+    expect(data[:errors].first[:status]).to eq(404)
+    expect(data[:errors].first[:title]).to eq("Couldn't find Item with 'id'=999999999")
+  end
+
   it "allows creation of an item through posting to /items" do
     merchant = Merchant.create!(name: "Kiwi")
     item_params = {
