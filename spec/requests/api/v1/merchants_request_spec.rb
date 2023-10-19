@@ -113,4 +113,34 @@ RSpec.describe "Merchants API" do
     expect(attributes).to have_key("name")
     expect(attributes["name"]).to be_a String
   end
+
+  describe "sad paths" do
+    it "returns 404 on a merchant id that doesnt exist" do
+      get "/api/v1/merchants/999999999"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      data = JSON.parse(response.body, symbolize_names: true)
+      expect(data[:errors]).to be_an Array
+      expect(data[:errors].first[:status]).to eq(404)
+      expect(data[:errors].first[:title]).to eq("Couldn't find Merchant with 'id'=999999999")
+    end
+
+    it "returns an empty result if no matching merchants are found using find endpoint" do
+      merchant = Merchant.create!(name: "mY SeARch MERchanT")
+
+      get "/api/v1/merchants/find?name=NOMATCH"
+
+      expect(response).to be_successful
+      
+      result = JSON.parse(response.body)
+      expect(result).to have_key("data")
+      expect(result["data"]).to be_a Hash
+
+      data = result["data"]
+      expect(data["id"]).to be nil
+      expect(data["attributes"]).to be_empty
+    end
+  end
 end
